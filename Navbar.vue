@@ -1,8 +1,9 @@
 <template>
   <header>
-    <div v-on:click.stop="toggleAccount" class="user">
+    <div v-if="username" v-on:click.stop="toggleAccount" class="user">
       {{username.charAt(0).toUpperCase()}}
     </div>
+    <a v-else href="/login" class="btn green main">Login</a>
 
     <div v-if="accountExpanded" v-on:click.stop class="dropdown">
       <div class="pic">{{username.charAt(0).toUpperCase()}}</div>
@@ -16,7 +17,7 @@ export default {
   data(){
     return {
       accountExpanded: false,
-      username: JSON.parse(atob(localStorage.authToken.split('.')[1])).sub
+      username: false
     }
   },
 
@@ -31,6 +32,21 @@ export default {
         document.removeEventListener('click', this.toggleAccount);
       }
     }
+  },
+
+  beforeMount(){
+    // Check if we're logged in
+    try{
+      const username = JSON.parse(atob(localStorage.authToken.split('.')[1])).sub;
+
+      if(username){
+        this.username = username;
+      }else{
+        this.username = false;
+      }
+    }catch(e){
+      this.username = false;
+    }
   }
 }
 </script>
@@ -44,9 +60,14 @@ export default {
     width: 100vw;
     border-bottom: 1px solid #dadada;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     padding: 0.5em 1em;
     box-sizing: border-box;
+
+    .btn{
+      padding: 0.75em 2em;
+    }
   }
 
   .user{
