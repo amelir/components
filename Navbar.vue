@@ -3,7 +3,7 @@
     <div v-if="username" v-on:click.stop="toggleAccount" class="user">
       {{username.charAt(0).toUpperCase()}}
     </div>
-    <a v-else href="/login" class="btn green main">Login</a>
+    <a v-else href="/login" class="btn green float">Login</a>
 
     <div v-if="accountExpanded" v-on:click.stop class="dropdown">
       <div class="pic">{{username.charAt(0).toUpperCase()}}</div>
@@ -58,6 +58,7 @@ export default {
   header{
     position: relative;
     width: 100vw;
+    height: 55px;
     border-bottom: 1px solid #dadada;
     display: flex;
     justify-content: flex-end;
@@ -65,8 +66,8 @@ export default {
     padding: 0.5em 1em;
     box-sizing: border-box;
 
-    .btn{
-      padding: 0.75em 2em;
+    .btn.float{
+      padding: 0.5em 2em;
     }
   }
 
