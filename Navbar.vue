@@ -8,6 +8,10 @@
     <div v-if="accountExpanded" v-on:click.stop class="dropdown">
       <div class="pic">{{username.charAt(0).toUpperCase()}}</div>
       <div class="username">{{username}}</div>
+      <div class="buttons">
+        <a class="btn red">Sign Out</a>
+        <a class="btn main">My Account</a>
+      </div>
     </div>
   </header>
 </template>
@@ -63,7 +67,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0.5em 1em;
+    padding: 0.5em 0.75em;
     box-sizing: border-box;
 
     .btn.float{
@@ -86,16 +90,16 @@ export default {
   }
 
   .dropdown{
+    background: #fff;
     position: absolute;
     display: flex;
+    width: 10em;
     flex-direction: column;
     align-items: center;
-    right: 1em;
+    right: 0.75em;
     top: 100%;
     padding: 1em 2em;
-    margin: 5px 0;
-    // width: 250px;
-    // height: 150px;
+    margin: 0.75em 0;
     box-shadow: 0 2px 4px rgba(#000, 0.1);
     border: 1px solid #e5e5e5;
     border-radius: 8px;
@@ -114,9 +118,25 @@ export default {
     }
 
     .username{
-      margin-top: 5px;
+      margin-top: 1em;
       font-size: 12px;
       color: #888;
+    }
+
+    .buttons{
+      display: flex;
+      margin-top: 1em;
+      justify-content: space-between;
+      margin-left: -2em;
+      margin-right: -2em;
+
+      .btn{
+        padding: 0.5em;
+
+        &:last-child{
+          margin-left: 2em;
+        }
+      }
     }
   }
 </style>
