@@ -1,18 +1,22 @@
 <template>
   <div v-bind:class="{input: true, focus: active}">
     <label :for="name">{{label}}</label>
-    <input ref="input" v-on:input="focus" v-on:focus="focus" v-on:blur="focus" :id="name" :name="name" :type="type" :required="required"/> 
+    <input ref="input" v-bind="$attrs" v-on:input="focus" v-on:focus="focus" v-on:blur="focus" :id="name"/> 
   </div>
 </template>
 
 <script>
 export default {
-  props: ['name', 'label', 'required', 'type'],
+  inheritAttrs: false,
+
+  props: ['name', 'label'],
+
   data(){
     return {
       active: false
     }
   },
+
   methods: {
     focus(e){
       this.active = Boolean(e.target.value.trim())
