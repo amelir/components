@@ -3,14 +3,14 @@
     <div v-if="username" v-on:click.stop="toggleAccount" class="user">
       {{username.charAt(0).toUpperCase()}}
     </div>
-    <a v-else href="/login" class="btn green float">Login</a>
+    <router-link v-else :to="{name: 'account_login'}" class="btn green float">Login</router-link>
 
     <div v-if="accountExpanded" v-on:click.stop class="dropdown">
       <div class="pic">{{username.charAt(0).toUpperCase()}}</div>
       <div class="username">{{username}}</div>
       <div class="buttons">
         <a class="btn red">Sign Out</a>
-        <a class="btn main">My Account</a>
+        <router-link v-on:click.native="toggleAccount" :to="{name: 'account_settings'}" class="btn main">My Account</router-link>
       </div>
     </div>
   </header>
