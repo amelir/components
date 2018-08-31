@@ -20,8 +20,13 @@
 export default {
   data(){
     return {
-      accountExpanded: false,
-      username: false
+      accountExpanded: false
+    }
+  },
+
+  computed: {
+    username(){
+      return this.$store.state.user.email
     }
   },
 
@@ -35,21 +40,6 @@ export default {
       }else{
         document.removeEventListener('click', this.toggleAccount);
       }
-    }
-  },
-
-  beforeMount(){
-    // Check if we're logged in
-    try{
-      const username = JSON.parse(atob(localStorage.authToken.split('.')[1])).sub;
-
-      if(username){
-        this.username = username;
-      }else{
-        this.username = false;
-      }
-    }catch(e){
-      this.username = false;
     }
   }
 }
@@ -131,10 +121,10 @@ export default {
       margin-right: -2em;
 
       .btn{
-        padding: 0.5em;
+        padding: 0.5em 0.75em;
 
         &:last-child{
-          margin-left: 2em;
+          margin-left: 1em;
         }
       }
     }
