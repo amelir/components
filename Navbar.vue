@@ -51,7 +51,7 @@ export default {
 
   header{
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 55px;
     border-bottom: 1px solid #dadada;
     display: flex;
