@@ -9,10 +9,13 @@
 
 <script>
 export default {
-  data(){
-    return {
-      visible: true,
-      links: []
+  computed: {
+    visible(){
+      return this.$store.state.sidebar.visible
+    },
+
+    links(){
+      return this.$store.state.sidebar.links
     }
   },
 
@@ -44,20 +47,20 @@ export default {
       });
 
       if(!currentComponent){
-        this.visible = false;
+        this.$store.commit('toggleSidebar', false);
         return;
       }
 
       const sidebarConfig = currentComponent.components.default.sidebar;
 
       if(!sidebarConfig){
-        this.visible = false;
+        this.$store.commit('toggleSidebar', false);
         return;
       }else{
-        this.visible = true;
+        this.$store.commit('toggleSidebar', true);
       }
 
-      this.links = sidebarConfig.links;
+      this.$store.commit('setSidebarLinks', sidebarConfig.links);
     }
   }
 }
