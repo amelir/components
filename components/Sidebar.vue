@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import 'components/colors.scss';
+  @import '../settings.scss';
   $color: #2e4051;
 
   .sidebar{
@@ -108,7 +108,7 @@ export default {
 </style>
 
 <style lang="scss">
-  @import 'components/colors.scss';
+  @import '../settings.scss';
   $width: 15em;
 
   @media screen and (min-width: $mobile-break){

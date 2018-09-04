@@ -27,7 +27,7 @@ export default {
 
 
 <style lang="scss" scoped>
-  @import './colors.scss';
+  @import '../settings.scss';
   
   .input{
     position: relative;

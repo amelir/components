@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import './colors.scss';
+  @import '../settings.scss';
   $height: 32px;
 
   header{
