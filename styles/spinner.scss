@@ -1,0 +1,21 @@
+@import '../settings.scss';
+
+.spinner{
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  border: 5px solid transparent;
+  border-right-color: $green;
+  margin: 0 auto;
+  animation: spinner infinite 1.5s linear;
+
+  @keyframes spinner{
+    0%{
+      transform: rotate(0deg);
+    }
+
+    100%{
+      transform: rotate(360deg);
+    }
+  }
+}

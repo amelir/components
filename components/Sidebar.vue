@@ -107,6 +107,7 @@ export default {
       padding: 0.75em 0 0.75em 2em;
       color: #efefef;
       user-select: none;
+      text-decoration: none;
       cursor: pointer;
 
       &:hover{
