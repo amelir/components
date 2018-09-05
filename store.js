@@ -6,12 +6,16 @@ export const sidebarStore = {
   },
 
   mutations: {
+    setSidebarLinks(state, links){
+      state.links = links;
+    },
+
+    toggleMobileSidebar(state){
+      state.mobileOpen = !state.mobileOpen;
+    },
+
     toggleSidebar(state, open){
       state.visible = Boolean(open);
     },
-
-    setSidebarLinks(state, links){
-      state.links = links;
-    }
   }
 }

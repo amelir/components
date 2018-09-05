@@ -1,5 +1,9 @@
 <template>
   <header>
+    <div v-if="sidebarStore.visible" v-on:click="toggleSidebar" v-bind:class="{active: sidebarStore.mobileOpen}" class="menu">
+      <div/>
+    </div>
+
     <div v-if="username" v-on:click.stop="toggleAccount" class="user">
       {{username.charAt(0).toUpperCase()}}
     </div>
@@ -25,8 +29,12 @@ export default {
   },
 
   computed: {
+    sidebarStore(){
+      return this.$store.state.sidebar;
+    },
+
     username(){
-      return this.$store.state.user.email
+      return this.$store.state.user.email;
     }
   },
 
@@ -40,6 +48,10 @@ export default {
       }else{
         document.removeEventListener('click', this.toggleAccount);
       }
+    },
+
+    toggleSidebar(){
+      this.$store.commit('toggleMobileSidebar');
     }
   }
 }
@@ -62,6 +74,70 @@ export default {
 
     .btn.float{
       padding: 0.5em 2em;
+    }
+  }
+
+  .menu{
+    position: absolute;
+    left: 1em;
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    border-radius: 8px;
+    transition: background-color 0.2s linear, margin-left 0.4s ease;
+    z-index: 10;
+    cursor: pointer;
+
+    @media screen and (min-width: $mobile-break){
+      display: none;
+    }
+
+    &:hover{
+      background-color: rgba(#000, 0.1);
+    }
+
+    div{
+      transition: all 1s ease;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &, &::before, &::after{
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: #333;
+        border-radius: 2px;
+        transition: all 0.5s ease, width 0.2s;
+      }
+
+      &::before{
+        margin-top: -9px;
+      }
+
+      &::after{
+        margin-top: 9px;
+      }
+    }
+
+    &.active{
+      margin-left: 15em;
+
+      div{
+        width: 0;
+      }
+
+      div::before, div::after{
+        margin-top: 0;
+      }
+
+      div::before{
+        transform: rotate(45deg);
+      }
+
+      div::after{
+        transform: rotate(-45deg);
+      }
     }
   }
 
